@@ -1,0 +1,22 @@
+{
+  "name": "ng-bootstrap-form-validation",
+  "version": "0.0.6",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run clean && ngc -p ./tsconfig.aot.json",
+    "ghp-build": "ng build --prod --base-href \"https://third774.github.io/ng-bootstrap-form-validation/\"",
+    "ghp-deploy": "ngh",
+    "clean": "rimraf ./dist"
+  },
+  "repository": {
+    "type": "mit",
+    "url": "https://github.com/third774/ng-bootstrap-form-validation"
+  },
+  "module": "index.js",
+  "private": false,
+  "peerDependencies": {
+    "@angular/common": ">= 4.0.0",
+    "@angular/core": ">= 4.0.0",
+    "@angular/forms": ">= 4.0.0"
+  }
+}

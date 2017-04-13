@@ -3,52 +3,31 @@
   "version": "0.0.6",
   "license": "MIT",
   "scripts": {
-    "build": "npm run clean && ngc -p ./tsconfig.aot.json",
-    "ghp-build": "ng build --prod --base-href \"https://third774.github.io/ng-bootstrap-form-validation/\"",
-    "ghp-deploy": "ngh",
-    "clean": "rimraf ./dist"
+    "build": "npm run clean && npm run ngc-build && npm run rollup-build && npm run copy",
+    "basic-build": "npm run clean && npm run ngc-build && npm run copy",
+    "clean": "rimraf dist && rimraf build",
+    "ngc-build": "ngc -p lib/tsconfig-build.json",
+    "rollup-build": "rollup build/ng-bootstrap-form-validation.js -o dist/ng-bootstrap-form-validation.js",
+    "ngc-es5": "ngc -p lib/tsconfig-es5.json",
+    "rollup-es5": "rollup build/ng-bootstrap-form-validation.js -o dist/ng-bootstrap-form-validation.es5.js",
+    "copy": "copyfiles -f lib/package.json dist && copyfiles -e '**/*.js' -u 1 build/**/* dist && copyfiles -f README.md dist"
   },
   "repository": {
     "type": "mit",
     "url": "https://github.com/third774/ng-bootstrap-form-validation"
   },
   "private": false,
-  "peerDependencies": {
-    "@angular/common": ">= 4.0.0",
-    "@angular/core": ">= 4.0.0",
-    "@angular/forms": ">= 4.0.0"
-  },
-  "dependencies": {
+  "devDependencies": {
     "@angular/common": "^4.0.0",
     "@angular/compiler": "^4.0.0",
+    "@angular/compiler-cli": "^4.0.0",
     "@angular/core": "^4.0.0",
     "@angular/forms": "^4.0.0",
-    "@angular/http": "^4.0.0",
-    "@angular/platform-browser": "^4.0.0",
-    "@angular/platform-browser-dynamic": "^4.0.0",
-    "@angular/router": "^4.0.0",
-    "core-js": "^2.4.1",
-    "rxjs": "^5.1.0",
-    "zone.js": "^0.8.4"
-  },
-  "devDependencies": {
-    "@angular/cli": "1.0.0",
-    "@angular/compiler-cli": "^4.0.0",
-    "@types/jasmine": "2.5.38",
-    "@types/node": "~6.0.60",
-    "angular-cli-ghpages": "^0.5.0",
-    "codelyzer": "~2.0.0",
-    "jasmine-core": "~2.5.2",
-    "jasmine-spec-reporter": "~3.2.0",
-    "karma": "~1.4.1",
-    "karma-chrome-launcher": "~2.0.0",
-    "karma-cli": "~1.0.1",
-    "karma-coverage-istanbul-reporter": "^0.2.0",
-    "karma-jasmine": "~1.1.0",
-    "karma-jasmine-html-reporter": "^0.2.2",
-    "protractor": "~5.1.0",
-    "ts-node": "~2.0.0",
-    "tslint": "~4.5.0",
-    "typescript": "~2.2.0"
+    "copyfiles": "^1.2.0",
+    "rimraf": "^2.6.1",
+    "rollup": "^0.41.6",
+    "rxjs": "^5.3.0",
+    "typescript": "^2.2.2",
+    "zone.js": "^0.8.5"
   }
 }

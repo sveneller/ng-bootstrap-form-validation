@@ -7,4 +7,5 @@ node_modules
 
 # Build folder
 dist
+build
 npm-debug.log
